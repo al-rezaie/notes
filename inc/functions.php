@@ -245,6 +245,7 @@ function getUserData() {
 
 // update user data
 if (isset($_POST['do-update'])) {
+    //update the message
     $newDisplayName = $_POST['display-name'];
     $newTitle = $_POST['title'];
     $newSubTitle = $_POST['subtitle'];
@@ -253,10 +254,36 @@ if (isset($_POST['do-update'])) {
     $updateDisplayName = mysqli_query($db, "UPDATE users SET display_name='$newDisplayName', title='$newTitle', subtitle='$newSubTitle' WHERE id='$userId'");
 
     if ($updateDisplayName) {
-        setMessage('اطلاعات بروزرسانی شد');
-        header('Location: ../setting.php');
+        setMessage('پیام‌برنامه بروزرسانی شد');
+        // header('Location: ../setting.php');
     } else {
-        echo 'something went wrong';
+        echo 'مشکلی پیش‌ آمده. لطفا دوباره امتحان كنید.';
     }
+
+    //update username and password
+    $newUserName = $_POST['newUserName'];
+    $newPassword = $_POST['newPassword'];
+
+    $query = mysqli_query($db, "SELECT * FROM users WHERE id='$userId'");
+    $info = mysqli_fetch_assoc($query);
+
+    $currentUserName = $info['user_name'];
+    $currentPassword = $info['password'];
+
+    if ($currentUserName != $newUserName || $newPassword != $currentPassword) {
+        if(validatePassword($newPassword)) {
+            $changeInfo = mysqli_query($db, "UPDATE users SET user_name='$newUserName', password='$newPassword' WHERE id='$userId'");
+
+            if($changeInfo) {
+                setMessage('لطفا با اطلاعات جدید خود وارد شوید.');
+                header('Location: ../login.php');
+                return 1;
+            } else {
+                setMessage('مشکلی پیش‌آمد. لطفا دوباره تلاش كنید.');
+            } 
+        }
+    }
+
+    header('Location: ../setting.php');
 
 }

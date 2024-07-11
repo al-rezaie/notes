@@ -22,8 +22,11 @@
                             <form action="inc/functions.php" method="post" class="text-center">
                                 <input type="text" name="display-name" class="form-control w-75 mx-auto" placeholder="نام شما">
                                 <input type="text" name="username" class="form-control w-75 mx-auto mt-2" placeholder="نام کاربری">
-                                <input type="password" name="password" class="form-control w-75 mx-auto mt-2" placeholder="کلمه عبور">
-                                <input type="password" name="password-conf" class="form-control w-75 mx-auto mt-2" placeholder="تکرار کلمه عبور">
+                                
+                                <div class="d-flex position-relative pass-container"><input type="password" name="password" class="form-control w-75 mx-auto mt-2 pass-input" placeholder="کلمه عبور"><span style="transform:translate(-50%,-50%);top:60%;left:17%;cursor:pointer;" class="d-inline-block position-absolute pass-icon"><i class="fas fa-eye"></i></span></div>
+
+                                <div class="d-flex position-relative" id="pass-container"><input type="password" name="password-conf" class="form-control w-75 mx-auto mt-2" id="pass-input" placeholder="تکرار کلمه عبور"><span style="transform:translate(-50%,-50%);top:60%;left:17%;cursor:pointer;" class="d-inline-block position-absolute" id="pass-icon"><i class="fas fa-eye"></i></span></div>
+
                                 <input type="submit" name="do-register" value="ساخت حساب جدید" class="btn btn-success w-75 mt-3">
                             </form>
                         </div>
