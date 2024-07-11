@@ -14,13 +14,13 @@
                 </div>
                 <?php require_once 'section/menu.php'  ?>
 
-                <div class="upgrade">
+                <!-- <div class="upgrade">
                     <a href="#" class=""><i class="fas fa-trophy"></i>خرید نسخه کامل</a>
-                </div>
+                </div> -->
             </div>
             <div class="col-lg-10 col-md-9 content g-0">
                 <div class="bg">
-                    <a class="profile"><i class="fas fa-user"></i>مشاهده پروفایل</a>
+                    <!-- <a class="profile"><i class="fas fa-user"></i>مشاهده پروفایل</a> -->
                     <div class="titles">
                         <h1 class="title"><?php echo $userData['title']; ?> <?php echo getDisplayName(); ?></h1>
                         <h2 class="title"><?php echo $userData['subtitle']; ?></h2>

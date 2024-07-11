@@ -2,6 +2,37 @@
 require_once 'db.php';
 session_start();
 
+
+//passwrod validation
+function validatePassword($pass) {
+    $uppercase = preg_match('/[A-Z]/', $pass);
+    $lowercase = preg_match('/[a-z]/', $pass);
+    $number = preg_match('/[0-9]/', $pass);
+    $special = preg_match('/[^a-zA-Z0-9]/', $pass);
+
+    $length = strlen($pass);
+
+    if ($length < 5) {
+        setMessage('طول رمزعبور باید بیشتر از 5 باشد.');
+        return false;
+    } elseif (!$number) {
+        setMessage('رمزعبور باید حاوی عدد باشد.');
+        return false;
+    } elseif (!$uppercase) {
+        setMessage('رمزعبور باید حاوی حروف بزرگ باشد.');
+        return false;
+    } elseif (!$lowercase) {
+        setMessage('رمزعبور باید حاوی حروف كوچک باشد.');
+        return false;
+    } elseif (!$special) {
+        setMessage('رمزعبور باید حاوی علائم خاص (@#$%) باشد.');
+        return false;
+    }
+
+    return true;
+}
+
+
 //add new user
 if(isset($_POST['do-register'])){
     $displayName = $_POST['display-name'];
@@ -18,6 +49,9 @@ if(isset($_POST['do-register'])){
     }else {
         if($password != $passConf){
             setMessage('رمزعبور و تكرار آن با هم برابر نيستند.');
+            header('Location: ../register.php');
+
+        }elseif(!validatePassword($password)) {
             header('Location: ../register.php');
 
         }else {
