@@ -96,9 +96,10 @@ if(isset($_GET['logout'])) {
 // add note
 if (isset($_POST['user-note'])) {
     $userNote = $_POST['user-note'];
+    $noteCategory = $_POST['category'];
     $userId = getUserId();
 
-    $addNote = mysqli_query($db, "INSERT INTO notes (note_text, user_id) VALUES ('$userNote', '$userId')");
+    $addNote = mysqli_query($db, "INSERT INTO notes (note_text, user_id, category) VALUES ('$userNote', '$userId', '$noteCategory')");
 
     if ($addNote) {
         header('Location: ../index.php');

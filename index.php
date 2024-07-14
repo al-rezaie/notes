@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="row mycards mx-auto">
-                    <div class="col-8">
+                    <div class="col-lg-8 mb-md-3">
                         <div class="box notes shadow-md">
                             <h2><i class="fas fa-calendar-day"></i>خلاصه امروز</h2>
                             <ul class="list">
@@ -42,12 +42,19 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-lg-4">
                         <div class="box quick-access shadow-md">
-                            <h2><i class="fas fa-circle-plus"></i>یادداشت سریع</h2>
+                            <h2><i class="fas fa-circle-plus"></i>افزودن یادداشت</h2>
 
                             <form action="inc/functions.php" method="POST">
-                                <input type="text" name="user-note" id="" class="note" placeholder="بنویسید و enter بزنید ...">
+                                <input type="text" name="user-note" class="note" placeholder="بنویسید و enter بزنید ..." required>
+                                <label class="form-label mt-3">انتخاب دسته</label>
+                                <select name="category" class="form-select w-75 my-3 mx-5" required>
+                                    <option value="general">بدون‌دسته</option>
+                                    <option value="todo">برنامه‌روزانه</option>
+                                    <option value="urgent">ضروری</option>
+                                    <option value="non-urgent">غیرضروری</option>
+                                </select>
                             </form>
 
                         </div>
