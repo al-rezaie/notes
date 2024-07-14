@@ -1,3 +1,5 @@
+//passord visibility toggler
+
 const eyeContainer = document.querySelector('.pass-container .pass-icon');
 const eyeIcon = document.querySelector('.pass-container .pass-icon i');
 const input = document.querySelector('.pass-container .pass-input');

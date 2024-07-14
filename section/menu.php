@@ -2,6 +2,7 @@
 <ul id="menu">
     <li class="menu-item"><a href="index.php"><i class="fas fa-home"></i>داشبورد</a></li>
     <li class="menu-item"><a href="notes.php"><i class="fas fa-book"></i>یادداشت ها</a></li>
+    <li class="menu-item"><a href="pomodoro.php"><i class="fas fa-clock"></i>پومودورو</a></li>
     <li class="menu-item"><a href="setting.php"><i class="fas fa-wrench"></i>تنظیمات</a></li>
     <li class="menu-item"><a href="?logout"><i class="fas fa-power-off"></i>خروج</a></li>
 </ul>
