@@ -30,10 +30,12 @@
                     <div class="col-lg-9">
                         <div class="box">
                             <h2><i class="fas fa-calendar-day"></i>همه یادداشت ها</h2>
+
+                            <h4 class="m-4 mb-0 text-dark">بدون دسته</h4>
                             <ul class="list">
                                 <?php
 
-                                    $notes = getUserNotes();
+                                    $notes = getUserNotes(false, 'general');
 
                                     foreach($notes as $note) {
 
@@ -41,6 +43,46 @@
                                 <li><a href="?done=<?php echo $note['id']; ?>"><i class="fas fa-square-check"></i></a><?php echo $note['note_text']; ?></li>
                                 <?php } ?>
                             </ul>
+
+                            <h4 class="m-4 mb-0 text-warning">برنامه‌روزانه</h4>
+                            <ul class="list">
+                                <?php
+
+                                    $notes = getUserNotes(false, 'todo');
+
+                                    foreach($notes as $note) {
+
+                                ?>
+                                <li><a href="?done=<?php echo $note['id']; ?>"><i class="fas fa-square-check"></i></a><?php echo $note['note_text']; ?></li>
+                                <?php } ?>
+                            </ul>
+
+                            <h4 class="m-4 mb-0 text-danger">ضروری</h4>
+                            <ul class="list">
+                                <?php
+
+                                    $notes = getUserNotes(false, 'urgent');
+
+                                    foreach($notes as $note) {
+
+                                ?>
+                                <li><a href="?done=<?php echo $note['id']; ?>"><i class="fas fa-square-check"></i></a><?php echo $note['note_text']; ?></li>
+                                <?php } ?>
+                            </ul>
+
+                            <h4 class="m-4 mb-0 text-secondary">غیرضروری</h4>
+                            <ul class="list">
+                                <?php
+
+                                    $notes = getUserNotes(false, 'non-urgent');
+
+                                    foreach($notes as $note) {
+
+                                ?>
+                                <li><a href="?done=<?php echo $note['id']; ?>"><i class="fas fa-square-check"></i></a><?php echo $note['note_text']; ?></li>
+                                <?php } ?>
+                            </ul>
+
                         </div>
                     </div>
 

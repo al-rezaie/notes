@@ -128,7 +128,7 @@ function checkLogin () {
 }
 
 // get user notes
-function getUserNotes($limit=false) {
+function getUserNotes($limit=false, $category='general') {
     global $db; 
 
     $userId = getUserId();
@@ -136,7 +136,7 @@ function getUserNotes($limit=false) {
     if ($limit) {
         $getNotes = mysqli_query($db, "SELECT * FROM notes WHERE user_id='$userId' AND is_done='0' ORDER BY id DESC LIMIT $limit");
     }else {
-        $getNotes = mysqli_query($db, "SELECT * FROM notes WHERE user_id='$userId' AND is_done='0' ORDER BY id DESC");
+        $getNotes = mysqli_query($db, "SELECT * FROM notes WHERE user_id='$userId' AND is_done='0'AND category='$category' ORDER BY id DESC");
     }
 
     $userNotes = [];
