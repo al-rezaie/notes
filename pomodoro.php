@@ -41,7 +41,7 @@
                             
                             <!-- <div class="btn-container d-flex flex-row-reverse justify-content-around mt-5" > -->
                             <div class="container mt-4">
-                                <div class="row d-flex justify-content-around">
+                                <div class="row d-flex flex-row-reverse justify-content-around">
                                     <button class="btn btn-success col-lg-2 col-md-12 mt-2" id="start-button">شروع</button>
                                     <button class="btn btn-info col-lg-2 col-md-12 mt-2" id="rest-button">استراحت</button>
                                     <button class="btn btn-warning col-lg-2 col-md-12 mt-2" id="reset-button">تنظیم مجدد</button>
