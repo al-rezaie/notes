@@ -42,7 +42,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 mt-3 mt-lg-0">
                         <div class="box quick-access shadow-md">
                             <h2><i class="fas fa-circle-plus"></i>افزودن یادداشت</h2>
 

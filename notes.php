@@ -27,11 +27,11 @@
                 </div>
 
                 <div class="row mycards mx-auto notes">
-                    <div class="col-lg-9">
+                    <div class="col-lg-8">
                         <div class="box">
                             <h2><i class="fas fa-calendar-day"></i>همه یادداشت ها</h2>
 
-                            <h4 class="m-4 mb-0 text-dark">بدون دسته</h4>
+                            <h4 class="m-4 mb-2 text-dark">بدون دسته</h4>
                             <ul class="list">
                                 <?php
 
@@ -44,7 +44,7 @@
                                 <?php } ?>
                             </ul>
 
-                            <h4 class="m-4 mb-0 text-warning">برنامه‌روزانه</h4>
+                            <h4 class="m-4 mb-2 text-warning">برنامه‌روزانه</h4>
                             <ul class="list">
                                 <?php
 
@@ -57,7 +57,7 @@
                                 <?php } ?>
                             </ul>
 
-                            <h4 class="m-4 mb-0 text-danger">ضروری</h4>
+                            <h4 class="m-4 mb-2 text-danger">ضروری</h4>
                             <ul class="list">
                                 <?php
 
@@ -70,7 +70,7 @@
                                 <?php } ?>
                             </ul>
 
-                            <h4 class="m-4 mb-0 text-secondary">غیرضروری</h4>
+                            <h4 class="m-4 mb-2 text-secondary">غیرضروری</h4>
                             <ul class="list">
                                 <?php
 
@@ -86,7 +86,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3">
+                    <div class="col-lg-4 mt-3 mt-lg-0">
                         <div class="box">
                             <h2><i class="fas fa-square-check"></i>انجام شده ها</h2>
                             <ul class="list done">
