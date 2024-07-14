@@ -39,11 +39,14 @@
                         <div dir="ltr" class="conatiner-fluid text-center m-5" id="timer-container">
                             <div class="h1" id="timer-value"></div>
                             
-                            <div class="btn-container d-flex flex-row-reverse justify-content-around mt-5">
-                                <button class="btn btn-success" id="start-button">شروع</button>
-                                <button class="btn btn-info" id="rest-button">استراحت</button>
-                                <button class="btn btn-warning" id="reset-button">تنظیم مجدد</button>
-                                <button class="btn btn-danger" id="stop-button">توقف</button>
+                            <!-- <div class="btn-container d-flex flex-row-reverse justify-content-around mt-5" > -->
+                            <div class="container mt-4">
+                                <div class="row d-flex justify-content-around">
+                                    <button class="btn btn-success col-lg-2 col-md-12 mt-2" id="start-button">شروع</button>
+                                    <button class="btn btn-info col-lg-2 col-md-12 mt-2" id="rest-button">استراحت</button>
+                                    <button class="btn btn-warning col-lg-2 col-md-12 mt-2" id="reset-button">تنظیم مجدد</button>
+                                    <button class="btn btn-danger col-lg-2 col-md-12 mt-2" id="stop-button">توقف</button>
+                                </div>
                             </div>
                         </div>
 
