@@ -273,12 +273,14 @@ if (isset($_POST['do-update'])) {
 
     if ($currentUserName != $newUserName || $newPassword != $currentPassword) {
 
-        $check_username = mysqli_query($db, "SELECT * FROM users WHERE user_name='$newUserName'");
+        if ($newUserName != $currentUserName) {
+            $check_username = mysqli_query($db, "SELECT * FROM users WHERE user_name='$newUserName'");
 
-        if(mysqli_num_rows($check_username) != 0){
-            setMessage('كاربري با اين نام‌كابري در سيستم ثبت‌نام كرده است.');
-            header('Location: ../setting.php');
-            return 1;
+            if(mysqli_num_rows($check_username) != 0){
+                setMessage('كاربري با اين نام‌كابري در سيستم ثبت‌نام كرده است.');
+                header('Location: ../setting.php');
+                return 1;
+            }
         }
 
         if(validatePassword($newPassword)) {
