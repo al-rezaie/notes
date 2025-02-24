@@ -12,14 +12,14 @@
                 </div>
 
                 <div class="row mycards mx-auto">
-                    <div class="col-5 mx-auto">
+                    <div class="col-lg-5 col-md-8 col-sm-10 col-12 mx-auto">
                         <div class="box notes shadow-md">
                             <h2><i class="fas fa-user"></i>ورود به حساب کاربری</h2>
                             <hr>
                             <?php showMessage(); ?>
                             <form action="inc/functions.php" method="post" class="text-center">
-                                <input type="text" name="username" class="form-control w-75 mx-auto" placeholder="نام کاربری">
-                                <input type="password" name="password" class="form-control w-75 mx-auto mt-2" placeholder="کلمه عبور">
+                                <input type="text" name="username" class="d-inline-block me-1 form-control w-75 mx-auto" placeholder="نام کاربری">
+                                <input type="password" name="password" class="d-inline-block me-1 form-control w-75 mx-auto mt-2" placeholder="کلمه عبور">
                                 <input type="submit" name="do-login" value="ورود به حساب کاربری" class="btn btn-success w-75 mt-3">
                             </form>
                         </div>

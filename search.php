@@ -27,7 +27,7 @@
                                 $searchResults = getSearchResult();
                                 foreach($searchResults as $searchResult){
                                 ?>
-                                <li><?php echo $searchResult['note_text']; ?></li>
+                                <li><a href="?done=<?php echo $searchResult['id'] ?>"><i class="fas fa-square-check"></i></a><?php echo $searchResult['note_text']; ?></li>
                                 <?php } ?>
                             </ul>
                         </div>

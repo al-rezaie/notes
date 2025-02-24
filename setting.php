@@ -31,7 +31,7 @@ $userData = getUserData();
                             <?php showMessage(); ?>
                             <form action="inc/functions.php" method="post">
                             <div class="row p-4">
-                                <div class="col-lg-4 col-md-12"><input type="text" name="display-name" value="<?php echo $userData['display_name']; ?>" class="form-control" placeholder="نام شما"></div>
+                                <div class="col-lg-4 col-md-12"><input type="text" name="display-name" value="<?php echo $userData['display_name']; ?>" class="form-control border border-danger" placeholder="نام شما"></div>
 
                                 <div class="col-lg-4 col-md-12 mt-lg-0 mt-1"><input type="text" name="title" value="<?php echo $userData['title']; ?>" class="form-control" placeholder="عنوان اصلی"></div>
 

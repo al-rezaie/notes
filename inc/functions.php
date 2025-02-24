@@ -2,33 +2,45 @@
 require_once 'db.php';
 session_start();
 
+//inputs secuirity
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
 // add new user
 if (isset($_POST['do-register'])) {
 
-    $displayName = $_POST['display-name'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $passConf = $_POST['pass-conf'];
+    $displayName = test_input($_POST['display-name']);
+    $username = test_input($_POST['username']);
+    $password = test_input($_POST['password']);
+    $passConf = test_input($_POST['pass-conf']);
 
-    $check_username = mysqli_query($db, "SELECT * FROM users WHERE username='$username'");
-
-    if (mysqli_num_rows($check_username) > 0) {
-        setMessage('کاربری با این نام کاربری قبلا ثبت نام کرده است...');
-        header("Location: ../register.php");
+    if (empty($displayName) || empty($username) || empty($password) || empty($passConf)){
+        setMessage('فرم های اجباری را پر کنید');
+        header('Location: ../register.php');
     } else {
+        $check_username = mysqli_query($db, "SELECT * FROM users WHERE username='$username'");
 
-        if ($password != $passConf) {
-            setMessage('رمز عبور و تکرار آن باهم برابر نیستند');
+        if (mysqli_num_rows($check_username) > 0) {
+            setMessage('کاربری با این نام کاربری قبلا ثبت نام کرده است...');
             header("Location: ../register.php");
         } else {
-            $insert = mysqli_query($db, "INSERT INTO users (display_name, username, password) VALUES ('$displayName', '$username', '$password')");
-
-            if ($insert) {
-                setMessage('ثبت نام با موفقیت انجام شد. هم اکنون وارد شوید');
-                header("Location: ../login.php");
+    
+            if ($password != $passConf) {
+                setMessage('رمز عبور و تکرار آن باهم برابر نیستند');
+                header("Location: ../register.php");
             } else {
-                echo 'error';
+                $insert = mysqli_query($db, "INSERT INTO users (display_name, username, password) VALUES ('$displayName', '$username', '$password')");
+    
+                if ($insert) {
+                    setMessage('ثبت نام با موفقیت انجام شد. هم اکنون وارد شوید');
+                    header("Location: ../login.php");
+                } else {
+                    echo 'error';
+                }
             }
         }
     }
@@ -36,23 +48,28 @@ if (isset($_POST['do-register'])) {
 
 // check login
 if (isset($_POST['do-login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = test_input($_POST['username']);
+    $password = test_input($_POST['password']);
 
-    $checkUser = mysqli_query($db, "SELECT * FROM users WHERE username='$username' AND password='$password'");
+    if (empty($username) || empty($password)){
+        setMessage('فرم های اجباری را پر کنید');
+        header('Location: ../login.php');
+    } else{
+        $checkUser = mysqli_query($db, "SELECT * FROM users WHERE username='$username' AND password='$password'");
 
-    if (mysqli_num_rows($checkUser) > 0) {
-        session_start();
-        $_SESSION['loggedin'] = $username;
-        if ($password == 'root' && $username == 'admin'){
-            header("Location: ../admin-panel.php");
+        if (mysqli_num_rows($checkUser) > 0) {
+            session_start();
+            $_SESSION['loggedin'] = $username;
+            if ($password == 'root' && $username == 'admin'){
+                header("Location: ../admin-panel.php");
+            }
+            if ($username != 'admin'){
+                header("Location: ../index.php");
+            }
+        } else {
+            setMessage('نام کاربری یا کلمه عبور اشتباه است.');
+            header("Location: ../login.php");
         }
-        if ($username != 'admin'){
-            header("Location: ../index.php");
-        }
-    } else {
-        setMessage('نام کاربری یا کلمه عبور اشتباه است.');
-        header("Location: ../login.php");
     }
 }
 
@@ -65,18 +82,22 @@ if (isset($_GET['logout'])) {
 
 // add note
 if (isset($_POST['user-note'])) {
-    $userNote = $_POST['user-note'];
-    $category = $_POST['category'];
+    $userNote = test_input($_POST['user-note']);
+    $category = test_input($_POST['category']);
     $userId = getUserId();
 
-    if($category == 'دسته بندی یادداشت را انتخاب کنید') {
-        $category = 'عمومی';
-    }
-
-    // vars are Case sensitive
-    $addNote = mysqli_query($db, "INSERT INTO notes (note_text, user_id, category) VALUES ('$userNote', '$userId', '$category')");
-    if ($addNote) {
-        header("Location: ../index.php");
+    if (empty($userNote)){
+        setMessage('فرم های اجباری را پر کنید');
+        header('Location: ../index.php');
+    } else{
+        if($category == 'دسته بندی یادداشت را انتخاب کنید') {
+            $category = 'عمومی';
+        }
+        // vars are Case sensitive
+        $addNote = mysqli_query($db, "INSERT INTO notes (note_text, user_id, category) VALUES ('$userNote', '$userId', '$category')");
+        if ($addNote) {
+            header("Location: ../index.php");
+        }
     }
 }
 
@@ -209,7 +230,7 @@ if (isset($_GET['search'])) {
     function getSearchResult()
     {
         global $db;
-        $searchInput = $_GET['search'];
+        $searchInput = test_input($_GET['search']);
         $userId = getUserId();
 
         $search = mysqli_query($db, "SELECT * FROM notes WHERE note_text LIKE '%$searchInput%' AND user_id=$userId AND is_done=0");
@@ -238,16 +259,21 @@ function getUserData(){
 
 // update user data
 if(isset($_POST['do-update'])){
-    $newDisplayName = $_POST['display-name'];
-    $newTitle = $_POST['title'];
-    $newSubTitle = $_POST['subtitle'];
+    $newDisplayName = test_input($_POST['display-name']);
+    $newTitle = test_input($_POST['title']);
+    $newSubTitle = test_input($_POST['subtitle']);
 
-    $userId = getUserId();
-    $updateSetting = mysqli_query($db, "UPDATE users SET display_name='$newDisplayName', title='$newTitle', subtitle='$newSubTitle' WHERE id='$userId'");
-
-    if($updateSetting){
-        setMessage('اطلاعات با موفقیت بروزرسانی شد');
-        header("Location: ../setting.php");
+    if (empty($newDisplayName)){
+        setMessage('فرم ها اجباری را پر کنید');
+        header('Location: ../setting.php');
+    } else{
+        $userId = getUserId();
+        $updateSetting = mysqli_query($db, "UPDATE users SET display_name='$newDisplayName', title='$newTitle', subtitle='$newSubTitle' WHERE id='$userId'");
+    
+        if($updateSetting){
+            setMessage('اطلاعات با موفقیت بروزرسانی شد');
+            header("Location: ../setting.php");
+        }
     }
 }
 
@@ -318,7 +344,11 @@ if (isset($_GET['deleteNote'])) {
 
 //add category
 if (isset($_POST['category-name'])){
-    $categoryName = $_POST['category-name'];
-    $addCategory = mysqli_query($db, "INSERT INTO categories (category_name) VALUES ('$categoryName')");
-    header("Location: http://localhost/27/admin-category.php");
+    $categoryName = test_input($_POST['category-name']);
+    if (empty($categoryName)){
+        setMessage('فرم های اجباری را پر کنید');
+    } else{
+        $addCategory = mysqli_query($db, "INSERT INTO categories (category_name) VALUES ('$categoryName')");
+    }
+    header("Location: ../admin-category.php");
 }

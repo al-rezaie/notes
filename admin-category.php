@@ -32,13 +32,13 @@ $userData = getUserData();
 
                 <div class="row mycards mx-auto notes">
                     <div class="col-lg-12">
-                        <div class="box">
+                        <div class="box p-1">
                             <?php showMessage(); ?>
 
 
 
                             <form action="inc/functions.php" method="POST">
-                                <input type="text" name="category-name"class="form-control mt-2 w-75 d-inline-block" placeholder="اسم دسته جدید را وارد کنید و enter بزنید">
+                                <input type="text" name="category-name"class="border border-danger form-control mt-2 w-75 d-inline-block" placeholder="اسم دسته جدید را وارد کنید و enter بزنید">
                                 <button type="submit" class="btn btn-success">اضافه کردن</button>
                             </form>
 

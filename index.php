@@ -37,8 +37,9 @@ $userData = getUserData(); ?>
                     <div class="col-lg-4 col-md-12 mt-lg-0  mt-2">
                         <div class="box quick-access shadow-md">
                             <h2><i class="fas fa-circle-plus"></i>افزودن یادداشت</h2>
+                            <?php showMessage() ?>
                             <form action="inc/functions.php" method="POST">
-                                <input type="text" name="user-note"class="note" placeholder="بنویسید و enter بزنید ...">
+                                <input type="text" name="user-note"class="note border border-danger" placeholder="بنویسید و enter بزنید ...">
                                 <select name="category" class="form-control mt-2 text-center" id="exampleFormControlSelect1">
                                     <option hidden>دسته بندی یادداشت را انتخاب کنید</option>
                                     <?php 
@@ -48,6 +49,7 @@ $userData = getUserData(); ?>
                                     <option value="<?php echo $category['category_name'] ?>"><?php echo $category['category_name'] ?></option>
                                     <?php } ?>
                                 </select>
+                                <button type="submit" class="btn btn-success w-100 mt-2">افزودن</button>
                             </form>
                         </div>
                     </div>
