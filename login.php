@@ -3,6 +3,7 @@
         <div class="row flex-grow-1">
             <div class="col-lg-2 col-md-3 sidebar">
                 <h2 class="logo">یادداشت ها</h2>
+                <img src="./images/Screenshot (10).png" alt="" class='w-100'>
                 <div class="devider"></div>
                 <?php require_once 'sections/menu.php' ?>
 
